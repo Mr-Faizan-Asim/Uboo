@@ -1,5 +1,5 @@
 import React from 'react'
-import "./assets/css/style.css"
+import "./assets/css/nav.css"
 import img from "./assets/img/perfil.png"
 import { Link } from 'react-router-dom'
 const navbar = () => {
@@ -56,8 +56,8 @@ const navbar = () => {
         <main class="main" id="main">
             <header class="header" id="header">
                 <nav class="header__nav container">
-                    <Link href="#" class="header__logo">
-                        Bales
+                    <Link to={"/"} class="header__logo">
+                        Uboo
                     </Link>
     
                     <div class="header__toggle" id="header-toggle">
@@ -67,33 +67,9 @@ const navbar = () => {
             </header>
 
 
-            <section class="section section__height container" id="home">
-                <h1>HOME</h1>
-                
-            </section>
-
-            <section class="section section__height container" id="about">
-                <h1>ABOUT</h1>
-                
-            </section>
-
-            <section class="section section__height container" id="portfolio">
-                <h1>PORTFOLIO</h1>
-                
-            </section>
-
-            <section class="section section__height container" id="skills">
-                <h1>SKILLS</h1>
-                
-            </section>
-
-            <section class="section section__height container" id="contact">
-                <h1>CONTACT</h1>
-
-            </section>
+           
         </main>
 
-        <script src="assets/js/main.js"></script>
     </div>
   )
 }
