@@ -1,31 +1,45 @@
-import React from 'react'
-import "./navbar.css"
-import { Link } from 'react-router-dom'
-const searchIcon = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" /></svg>
-
+import React from 'react';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
+import images from '../../constants/images';
+import './Navbar.css';
 
 const Navbar = () => {
+  const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
-    <div className="nav">
-      
-      <div className='logo'>
-        
-        <Link to='/'>
-          <img id="logoImage" src={searchIcon} alt="Not" />
-        </Link>
-        
+    <nav className="app__navbar">
+      <div className="app__navbar-logo">
+        <img src={images.gericht} alt="app__logo" />
       </div>
-
-        <Link className='navlinks' to="/miphones">Sign In</Link>
-        <Link className='navlinks' to="/redmiphones">Sign Up</Link> 
-
-        <div className="search">
-          <input type="text" name="Search" placeholder="Search Products" />
-          {searchIcon}
-        </div>
-      
+      <ul className="app__navbar-links">
+        <li className="p__opensans"><a href="#home">Home</a></li>
+        <li className="p__opensans"><a href="#about">About</a></li>
+        <li className="p__opensans"><a href="#menu">Menu</a></li>
+        <li className="p__opensans"><a href="#awards">Awards</a></li>
+        <li className="p__opensans"><a href="#contact">Contact</a></li>
+      </ul>
+      <div className="app__navbar-login">
+        <a href="#login" className="p__opensans">Log In / Registration</a>
+        <div />
+        <a href="/" className="p__opensans">Book Table</a>
       </div>
-  )
-}
+      <div className="app__navbar-smallscreen">
+        <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
+        {toggleMenu && (
+          <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
+            <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
+            <ul className="app__navbar-smallscreen_links">
+              <li><a href="#home" onClick={() => setToggleMenu(false)}>Home</a></li>
+              <li><a href="#about" onClick={() => setToggleMenu(false)}>About</a></li>
+              <li><a href="#menu" onClick={() => setToggleMenu(false)}>Menu</a></li>
+              <li><a href="#awards" onClick={() => setToggleMenu(false)}>Awards</a></li>
+              <li><a href="#contact" onClick={() => setToggleMenu(false)}>Contact</a></li>
+            </ul>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
