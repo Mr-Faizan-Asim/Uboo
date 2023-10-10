@@ -1,8 +1,6 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/navbar.jsx"
-import Carousel from './components/carousel/carousel.jsx'
-import PreNavbar from './components/preNav/preNav.jsx';
 const App = () => {
   let start = [
     "https://i02.appmifile.com/173_operator_in/09/06/2021/fde866737ea0357305c2d1c852541460.gif",
@@ -20,10 +18,8 @@ const App = () => {
 ] 
   return (
     <Router>
-      <PreNavbar />
       <Navbar/>
       <Routes>
-        <Route path='/about' element={<Carousel start={start}/>}/>
       </Routes>
     </Router>
   )

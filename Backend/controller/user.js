@@ -2,14 +2,14 @@ const User = require('../models/user')
 const { StatusCodes } = require('http-status-codes')
 const { NotFound } = require('../errors/index')
 
-const notFoundError = (id) => {
+export const notFoundError = (id) => {
     return new NotFound(`No user with id : ${id}`)
 }
 
 // get all users
 const getAllUsers = async (req, res) => { 
     const users = await User.find({})
-    res.status(StatusCodes.OK).json({users, count: users.length})
+    res.status(StatusCodes.OK).json({users})
 }
 
 // create a new user
