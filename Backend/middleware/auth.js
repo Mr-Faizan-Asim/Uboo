@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
+const {Unauthorized, BadRequest} = require('../errors/index')
 
 exports.isAuthenticatedUser = (async(req,res,next)=>{
     const {token} = req.cookies;
     if(!token)
     {
-        return  res.status(404).send("Please Login");
+        throw new BadRequest("Login first to access this resource");
     }
     const decodes = jwt.verify(token,"KazimFaizan");
     req.user = await User.findById(decodes.id);
@@ -15,7 +16,7 @@ exports.authorizeRole = (...roles)=>{
     return (req,res,next)=>{
         if(!roles.includes(req.user.role))
         {
-            return next(res.status(200).send("NO user is here"))
+            throw new Unauthorized(`Role (${req.user.role}) is not allowed to access this resource`);
         }
         next();
     }

@@ -45,10 +45,20 @@ const deleteUser = async (req, res) => {
     res.status(StatusCodes.OK).json({msg: `user with id : ${req.params.id} deleted`})
 }
 
+// block user
+const blockUser = async (req, res) => { 
+    const user = await User.findByIdAndUpdate(req.params.id, {Blocked:false}, {new:true,runValidators:true})
+    if (!user) {
+        return next(notFoundError(req.params.id))
+    }
+    res.status(StatusCodes.OK).json({msg: `user with id : ${req.params.id} blocked`, updatedUser: user})
+}
+
 module.exports = {
     getAllUsers,
     newUser,
     getSingleUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    blockUser
 }
