@@ -1,12 +1,13 @@
 const app = require('./app.js')
-const dotenv = require('dotenv')
+require('dotenv').config({path:'backend/config/config.env'})
 const connectDatabase = require('./db/db.js');
 
-dotenv.config();
-connectDatabase();
+connectDatabase(process.env.DB_URL);
 
-const server = app.listen(process.env.PORT,()=>{
-    console.log(`Server is at http://localhost:${process.env.PORT}`)
-})
+const server = () => {
+    app.listen(process.env.PORT || 3000,()=>{
+        console.log(`Server is at http://localhost:${process.env.PORT}`)
+    })
+}
 
-
+server();
