@@ -2,7 +2,7 @@ const User = require('../models/user')
 const { StatusCodes } = require('http-status-codes')
 const { NotFound } = require('../errors/index')
 
-export const notFoundError = (id) => {
+const notFoundError = (id) => {
     return new NotFound(`No user with id : ${id}`)
 }
 
@@ -14,6 +14,7 @@ const getAllUsers = async (req, res) => {
 
 // create a new user
 const newUser = async (req, res) => {
+    if (!req.body) return res.json(req.body)
     const user = await User.create(req.body)
     res.status(StatusCodes.ACCEPTED).json(user)
 }
@@ -37,7 +38,7 @@ const updateUser = async (req, res, next) => {
 }
 
 // delete user
-const deleteUser = async (req, res) => { 
+const deleteUser = async (req, res, next) => { 
     const user = await User.findByIdAndRemove(req.params.id)
     if (!user) {
         return next(notFoundError(req.params.id))
@@ -46,8 +47,8 @@ const deleteUser = async (req, res) => {
 }
 
 // block user
-const blockUser = async (req, res) => { 
-    const user = await User.findByIdAndUpdate(req.params.id, {Blocked:false}, {new:true,runValidators:true})
+const blockUser = async (req, res, next) => { 
+    const user = await User.findByIdAndUpdate(req.params.id, {"blocked":"true"}, {new:true,runValidators:true})
     if (!user) {
         return next(notFoundError(req.params.id))
     }
@@ -60,5 +61,6 @@ module.exports = {
     getSingleUser,
     updateUser,
     deleteUser,
-    blockUser
+    blockUser,
+    notFoundError
 }

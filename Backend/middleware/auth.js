@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
-const {Unauthorized, BadRequest} = require('../errors/index')
+const { Unauthorized, BadRequest } = require('../errors/index')
+const { StatusCodes } = require("http-status-codes");
+
 
 exports.isAuthenticatedUser = (async(req,res,next)=>{
     const {token} = req.cookies;
@@ -21,3 +23,4 @@ exports.authorizeRole = (...roles)=>{
         next();
     }
 }
+
