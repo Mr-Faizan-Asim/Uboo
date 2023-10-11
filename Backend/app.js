@@ -20,5 +20,8 @@ app.use("/api/v1", eventRouter)
 app.use(NotFoundMiddleware)
 app.use(errorHandlerMiddleware)
 
+// TO-DO
+// event can get created without entering any image urls
+// it is not catching model validation errors
 
 module.exports = app
