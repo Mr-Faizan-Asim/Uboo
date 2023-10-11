@@ -13,13 +13,12 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-
 app.use("/api/v1/",UserRouter);
 app.use("/api/v1/",BlogRouter)
 app.use("/api/v1", eventRouter)
 
 app.use(NotFoundMiddleware)
-
 app.use(errorHandlerMiddleware)
+
 
 module.exports = app

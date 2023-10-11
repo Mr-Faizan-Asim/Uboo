@@ -1,5 +1,5 @@
 const {StatusCodes} = require('http-status-codes')
 
-const NotFoundMiddleware = (req, res) => res.status(StatusCodes.NOT_FOUND).send('Route does not exist')
+const NotFoundMiddleware = (req, res) => res.status(StatusCodes.NOT_FOUND).json({msg: 'Route not found'})
 
 module.exports = NotFoundMiddleware

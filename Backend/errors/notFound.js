@@ -3,8 +3,7 @@ const {StatusCodes} = require('http-status-codes')
 
 class NotFound extends CustomError{
     constructor(message){
-        super(message)
-        this.StatusCodes = StatusCodes.NOT_FOUND
+        super(message, StatusCodes.NOT_FOUND)
     }
 }
 
