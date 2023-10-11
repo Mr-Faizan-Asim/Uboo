@@ -22,13 +22,4 @@ app.use(NotFoundMiddleware)
 
 app.use(errorHandlerMiddleware)
 
-// app.use((err, req, res, next) => {
-//     var l = process.once('unhandledRejection', (err) => {
-//         console.log(`Error: ${err.message}`);
-//         res.status(500).json({ msg: err.message })
-//     })
-//     next()
-//     process.removeEventLister('unhandledRejection', l);
-// })
-
 module.exports = app
